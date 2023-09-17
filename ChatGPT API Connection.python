@@ -1,0 +1,2 @@
+import requests
+URL = https://openai.com/v1/chat/completi
