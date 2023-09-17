@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #dataDisplay {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Truncate text if it exceeds 20 characters */
+        .truncate-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Scraper</h1>
+    <div class="container">
+        <label for="websiteSelector">Select a website:</label>
+        <select id="websiteSelector">
+            <!-- Dynamically populate the options using JavaScript -->
+        </select>
+        <button id="scrapeButton">Scrape Data</button>
+
+        <div id="dataDisplay">
+            <!-- Display scraped data here -->
+            
+        </div>
+    </div>
+
+    <script>
+        const websiteSelector = document.getElementById('websiteSelector');
+        const scrapeButton = document.getElementById('scrapeButton');
+        const dataDisplay = document.getElementById('dataDisplay');
+
+        // Define a function to populate the website options
+        function populateWebsiteOptions() {
+            const websites = [
+                'https://www.shopzilla.com/towels/products/',
+                'https://www.shopzilla.com/cellphones/products/',
+                'https://www.shopzilla.com/skincareproducts/browse/',
+                'https://www.shopzilla.com/pens/browse/',
+                'https://www.shopzilla.com/womensclothing/browse/',
+                'https://www.shopzilla.com/mensclothing/browse/',
+                'https://www.shopzilla.com/calculators1/browse/',
+                'https://www.shopzilla.com/laptopcomputers/browse/',
+                'https://www.shopzilla.com/headsets_microphones/browse/'
+            ];
+
+            websites.forEach((url, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.text = url;
+                websiteSelector.appendChild(option);
+            });
+        }
+
+        // Call the function to populate website options
+        populateWebsiteOptions();
+
+        // Function to truncate text if it is over a certain length
+        function truncateText(text, maxLength) {
+            return text.length <= maxLength ? text : text.substr(0, maxLength) + '...';
+        }
+
+        // Add an event listener to the scrape button
+        scrapeButton.addEventListener('click', async () => {
+            const selectedWebsiteIndex = websiteSelector.value;
+            // Call your scraping functions here based on the selectedWebsiteIndex
+            
+            // You may need to adjust your functions to work with the selected website URL.
+
+            // For demonstration purposes, we'll display some sample data.
+
+            const data = [
+                
+            ];
+
+            // const sampleData = [
+            //     { itemName: 'This is a long item name that needs to be truncated', price: '$10.99' },
+            //     { itemName: 'Short Item', price: '$5.99' },
+            //     { itemName: 'Another Long Item Name That Needs Truncation', price: '$8.49' },
+            // ];
+
+            // Create an HTML string to display the data
+            const dataHTML = sampleData.map(item => `<p><span class="truncate-text">${truncateText(item.itemName, 20)}</span>: ${item.price}</p>`).join('');
+
+            // Display the data in the dataDisplay div
+            dataDisplay.innerHTML = dataHTML;
+        });
+    </script>
+</body>
+</html>
